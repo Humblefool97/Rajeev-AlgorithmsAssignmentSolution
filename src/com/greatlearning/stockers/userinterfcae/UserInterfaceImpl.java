@@ -5,6 +5,9 @@ import com.greatlearning.stockers.model.Stock;
 
 import java.util.Scanner;
 
+/**
+ * Driver class
+ */
 public class UserInterfaceImpl implements UserInterface {
 
     private final Scanner scanner = new Scanner(System.in);
@@ -24,6 +27,12 @@ public class UserInterfaceImpl implements UserInterface {
 
     }
 
+    /**
+     * Handle options selected by the user
+     * @param instance
+     * @param stockProcessor
+     * @param selectedOption
+     */
     private static void handleOptions(UserInterfaceImpl instance, StockProcessor stockProcessor, int selectedOption) {
         switch (selectedOption) {
             case 1: {
@@ -62,6 +71,11 @@ public class UserInterfaceImpl implements UserInterface {
         }
     }
 
+    /**
+     * Accepts user input to build stock info
+     *
+     * @return
+     */
     @Override
     public Stock[] buildStockInfo() {
 
@@ -82,6 +96,9 @@ public class UserInterfaceImpl implements UserInterface {
         return stockArray;
     }
 
+    /**
+     * Displays Menu
+     */
     @Override
     public void displayOptions() {
         DisplayHelper.displayDecorationHeader("Stock info");
