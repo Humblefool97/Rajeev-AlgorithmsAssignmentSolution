@@ -41,6 +41,18 @@ public class UserInterfaceImpl implements UserInterface {
                     System.out.println(count);
                     break;
                 }
+                case 5:{
+                    DisplayHelper.displayInfo("enter the key value");
+                    double stockPrice = instance.scanner.nextDouble();
+                    boolean isPresent = stockProcessor.searchForAStock(stockPrice);
+                    String message ="Stock of value "+stockPrice;
+                    if(isPresent){
+                        message += " is present";
+                    }else {
+                        message += " is not present";
+                    }
+                    DisplayHelper.displayInfo(message);
+                }
             }
         } while (selectedOption != 0);
 
@@ -71,11 +83,13 @@ public class UserInterfaceImpl implements UserInterface {
         DisplayHelper.displayDecorationHeader("Stock info");
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder
-                .append("Display the companies stock prices in ascending order")
-                .append("Display the companies stock prices in descending order")
-                .append("Display the total no of companies for which stock prices rose today")
-                .append("Display the total no of companies for which stock prices declined today")
-                .append("Search a specific stock price");
+                .append("1.Display the companies stock prices in ascending order\n")
+                .append("2.Display the companies stock prices in descending order\n")
+                .append("3.Display the total no of companies for which stock prices rose today\n")
+                .append("4.Display the total no of companies for which stock prices declined today\n")
+                .append("5.Search a specific stock price\n")
+                .append("0.Exit\n")
+        ;
         DisplayHelper.displayInfo(stringBuilder.toString());
         DisplayHelper.displayDecorationFooter();
     }
