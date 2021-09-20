@@ -19,43 +19,47 @@ public class UserInterfaceImpl implements UserInterface {
         do {
             instance.displayOptions();
             selectedOption = instance.acceptOptions();
-            switch (selectedOption) {
-                case 1: {
-                    instance.displayStocks(stockProcessor.getStocksInCreasingOrder());
-                    break;
-                }
-
-                case 2: {
-                    instance.displayStocks(stockProcessor.getStocksInDecreasingOrder());
-                    break;
-                }
-
-                case 3: {
-                    int count = stockProcessor.numberOfCompaniesStockRose();
-                    System.out.println(count);
-                    break;
-                }
-
-                case 4:{
-                    int count = stockProcessor.numOfCompaniesStockDecreased();
-                    System.out.println(count);
-                    break;
-                }
-                case 5:{
-                    DisplayHelper.displayInfo("enter the key value");
-                    double stockPrice = instance.scanner.nextDouble();
-                    boolean isPresent = stockProcessor.searchForAStock(stockPrice);
-                    String message ="Stock of value "+stockPrice;
-                    if(isPresent){
-                        message += " is present";
-                    }else {
-                        message += " is not present";
-                    }
-                    DisplayHelper.displayInfo(message);
-                }
-            }
+            handleOptions(instance, stockProcessor, selectedOption);
         } while (selectedOption != 0);
 
+    }
+
+    private static void handleOptions(UserInterfaceImpl instance, StockProcessor stockProcessor, int selectedOption) {
+        switch (selectedOption) {
+            case 1: {
+                instance.displayStocks(stockProcessor.getStocksInCreasingOrder());
+                break;
+            }
+
+            case 2: {
+                instance.displayStocks(stockProcessor.getStocksInDecreasingOrder());
+                break;
+            }
+
+            case 3: {
+                int count = stockProcessor.numberOfCompaniesStockRose();
+                System.out.println(count);
+                break;
+            }
+
+            case 4: {
+                int count = stockProcessor.numOfCompaniesStockDecreased();
+                DisplayHelper.displayInfo(String.valueOf(count));
+                break;
+            }
+            case 5: {
+                DisplayHelper.displayInfo("enter the key value");
+                double stockPrice = instance.scanner.nextDouble();
+                boolean isPresent = stockProcessor.searchForAStock(stockPrice);
+                String message = "Stock of value " + stockPrice;
+                if (isPresent) {
+                    message += " is present";
+                } else {
+                    message += " is not present";
+                }
+                DisplayHelper.displayInfo(message);
+            }
+        }
     }
 
     @Override
@@ -96,7 +100,6 @@ public class UserInterfaceImpl implements UserInterface {
 
     @Override
     public int acceptOptions() {
-
         return scanner.nextInt();
     }
 
